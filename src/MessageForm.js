@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 
 class MessageForm extends Component {
+    state = {
+        body: '',
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addMessage();
+        this.props.addMessage(this.state.body);
+    }
+
+    handleChage = (e) => {
+        this.setState({
+            body: e.target.value,
+        });
     }
 
     render() {
@@ -12,12 +22,14 @@ class MessageForm extends Component {
                 className="MessageForm"
                 onSubmit={this.handleSubmit}
             >
-                <input 
+                <input
+                    autoFocus
+                    required
                     type="text"
                     name="body"
                     placeholder="Type a message..."
-                    autoFocus
-                    required
+                    value={this.state.body}
+                    onChange={this.handleChage}
                 />
                 <button type="submit">
                     Send
