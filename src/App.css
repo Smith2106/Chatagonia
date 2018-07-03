@@ -3,3 +3,23 @@
 body {
     font-family: 'Raleway', sans-serif;
 }
+
+.RoomList li a::before {
+    content: '# ';
+}
+
+.RoomList li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+  
+.UserInfo a:hover {
+    color: white !important;
+}
+
+.Avatar {
+    height: 40px;
+    width: 40px;
+    font-size: 1rem;
+    border-radius: 20px;
+}
+  
