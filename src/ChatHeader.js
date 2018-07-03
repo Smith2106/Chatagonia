@@ -9,7 +9,7 @@ const ChatHeader = () => {
             </div>
         </header>
     );
-}
+};
 
 
 export default ChatHeader;
