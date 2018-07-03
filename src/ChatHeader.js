@@ -5,7 +5,7 @@ const ChatHeader = () => {
         <header className="ChatHeader" style={styles.chatHeader}>
             <div className="roomInfo">
                 <h2 style={styles.roomInfoH2}>#general</h2>
-                <p styles={styles.roomInfoP}>Announcements and general chat</p>
+                <p style={styles.roomInfoP}>Announcements and general chat</p>
             </div>
         </header>
     );

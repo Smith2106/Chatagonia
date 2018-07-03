@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Raleway', sans-serif;
+    margin: 0;
 }
 
 .RoomList li a::before {
@@ -23,3 +24,6 @@ body {
     border-radius: 20px;
 }
   
+.MessageForm input:focus {
+    outline: 0;
+}
