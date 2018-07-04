@@ -38,7 +38,7 @@ class MessageForm extends Component {
                     style={styles.input}
                 />
                 <button type="submit" style={styles.button}>
-                <i className="far fa-paper-plane" title="Send"></i>
+                    <i className="far fa-paper-plane" title="Send"></i>
                 </button>
             </form>
         );

@@ -7,7 +7,7 @@ const Avatar = props => {
             style={{...props.style,...styles}}
         ></div>
     );
-}
+};
 
 const styles = {
     background: 'url(https://api.adorable.io/avatars/32/davey@getfretless.com)',

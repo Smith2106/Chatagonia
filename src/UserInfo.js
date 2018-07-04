@@ -12,7 +12,7 @@ const UserInfo = props => {
             </a>
         </div>
     );
-}
+};
 
 const styles = {
     info: {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 import Main from './Main';
+import SignIn from './SignIn';
 
 class App extends Component {
   constructor(props) {
@@ -16,9 +17,16 @@ class App extends Component {
     };
   }
 
+  signIn = (user) => {
+    this.setState({
+      user
+    });
+  }
+
   render() {
     return (
       <div className="App">
+        <SignIn signIn={this.signIn} />
         <Main user={this.state.user}/>
       </div>
     );
