@@ -9,11 +9,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      user: {
-        uid: '5DKfh32948',
-        displayName: 'Eli',
-        email: 'smit2872@purdue.edu',
-      },
+      user: null,
     };
   }
 
@@ -26,8 +22,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SignIn signIn={this.signIn} />
-        <Main user={this.state.user}/>
+        {this.state.user ? (
+          <Main user={this.state.user} />
+        ) : (
+          <SignIn signIn={this.signIn} />
+        )}
       </div>
     );
   }

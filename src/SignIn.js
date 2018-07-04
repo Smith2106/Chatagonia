@@ -19,7 +19,6 @@ class SignIn extends Component {
     }
 
     handleChange = (e, key) => {
-        console.log(key);
         this.setState({
             [key]: e.target.value,
         });
