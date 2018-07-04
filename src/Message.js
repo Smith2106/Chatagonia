@@ -1,12 +1,11 @@
 import React from 'react';
 
+import Avatar from './Avatar';
+
 const Message = (props) => {
     return (
         <div class="Message" style={styles.message}>
-          <div
-            class="Avatar"
-            style={styles.avatar}
-          ></div>
+          <Avatar />
           <div class="details" style={styles.details}>
             <div class="Metadata" style={styles.metadata}>
               <div class="user" style={styles.user}>{props.message.user.displayName}</div>
@@ -30,10 +29,6 @@ const styles = {
     details: {
         flex: '1',
         paddingLeft: '0.5rem',
-    },
-
-    avatar: {
-        background: 'url(https://api.adorable.io/avatars/32/davey@getfretless.com)',
     },
 
     metadata: {

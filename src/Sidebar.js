@@ -1,13 +1,12 @@
 import React from 'react';
 
+import Avatar from './Avatar';
+
 const Sidebar = (props) => {
     return (
         <aside className="Sidebar" style={styles.sidebar}>
             <div className="UserInfo" style={{...styles.children, ...styles.userInfo}}>
-                <div
-                    className="Avatar"
-                    styles={styles.userAvatar}
-                ></div>
+                <Avatar />
                 <div className="user" style={styles.user}>{props.user.displayName}</div>
                 <a href="#" style={styles.userInfoA}>
                     <i className="fas fa-sign-out-alt"></i>
