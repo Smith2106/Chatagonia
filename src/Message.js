@@ -4,14 +4,14 @@ import Avatar from './Avatar';
 
 const Message = (props) => {
     return (
-        <div class="Message" style={styles.message}>
+        <div className="Message" style={styles.message}>
           <Avatar />
-          <div class="details" style={styles.details}>
-            <div class="Metadata" style={styles.metadata}>
-              <div class="user" style={styles.user}>{props.message.user.displayName}</div>
-              <div class="time" style={styles.time}>1:16 PM</div>
+          <div className="details" style={styles.details}>
+            <div className="Metadata" style={styles.metadata}>
+              <div className="user" style={styles.user}>{props.message.user.displayName}</div>
+              <div className="time" style={styles.time}>1:16 PM</div>
             </div>
-            <div class="body">
+            <div className="body">
               {props.message.body}
             </div>
           </div>

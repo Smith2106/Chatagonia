@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Avatar = () => {
+const Avatar = props => {
     return (
         <div
-            class="Avatar"
-            style={styles}
+            className="Avatar"
+            style={{...props.style,...styles}}
         ></div>
     );
 }
