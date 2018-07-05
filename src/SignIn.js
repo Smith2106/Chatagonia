@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StyleSheet, css } from 'aphrodite';
 
 class SignIn extends Component {
 
@@ -26,9 +27,9 @@ class SignIn extends Component {
 
     render() {
         return (
-            <div className="SignIn" style={styles.container}>
-                <h1 style={styles.title}>Chatagonia</h1>
-                <form onSubmit={this.handleSubmit} style={styles.form}>
+            <div className={`SignIn ${css(styles.container)}`}>
+                <h1 className={css(styles.title)}>Chatagonia</h1>
+                <form onSubmit={this.handleSubmit} className={css(styles.form)}>
                     <input 
                         autoFocus
                         required    
@@ -37,7 +38,7 @@ class SignIn extends Component {
                         placeholder="Enter an email."
                         value={this.state.email}
                         onChange={(e) => this.handleChange(e, 'email')}
-                        style={styles.input}
+                        className={css(styles.input)}
                     />
                     <input 
                         required    
@@ -46,7 +47,7 @@ class SignIn extends Component {
                         value={this.state.displayName}
                         placeholder="Enter a display name."
                         onChange={(e) => this.handleChange(e, 'displayName')}
-                        style={styles.input}
+                        className={css(styles.input)}
                     />
                     <input
                         required    
@@ -55,16 +56,16 @@ class SignIn extends Component {
                         placeholder="Enter a user ID."
                         value={this.state.uid}
                         onChange={(e) => this.handleChange(e, 'uid')}
-                        style={styles.input}
+                        className={css(styles.input)}
                     />
-                    <button type="submit" style={styles.button}>Sign In</button>
+                    <button type="submit" className={css(styles.button)}>Sign In</button>
                 </form>
             </div>
         );
     }
 }
 
-const styles = {
+const styles = StyleSheet.create({
     form: {
         display: 'flex',
         alignItems: 'center',
@@ -86,6 +87,12 @@ const styles = {
         fontSize: '1rem',
         width: '100%',
         opacity: '0.6',
+
+        ':focus': {
+            border: '1px solid rgba(73, 90, 41, 0.5)',
+            transform: 'scale(1.01)',
+            transition: '0.4s',
+        },
     },
 
     button: {
@@ -95,6 +102,13 @@ const styles = {
         background: 'darkolivegreen',
         color: 'white',
         fontSize: '1rem',
+
+        ':hover': {
+            transform: 'scale(1.05)',
+            background: 'rgb(73, 90, 41)',
+            border: '0.05px solid lightsteelblue',
+            transition: '0.2s',
+        },
     },
 
     container: {
@@ -110,6 +124,6 @@ const styles = {
         color: 'darkolivegreen',
         fontSize: '64px',
     }
-}
+});
 
 export default SignIn;

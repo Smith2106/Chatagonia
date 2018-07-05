@@ -23,16 +23,3 @@ body {
 .MessageForm input:focus {
     outline: 0;
 }
-
-.SignIn form button:hover {
-    transform: scale(1.05);
-    background: rgb(73, 90, 41) !important;
-    border: 0.05px solid lightsteelblue !important;
-    transition: 0.2s;
-}
-
-.SignIn form input:focus {
-    border: 1px solid rgba(73, 90, 41, 0.5) !important;
-    transform: scale(1.01);
-    transition: 0.4s;
-}
