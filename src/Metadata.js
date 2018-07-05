@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Metadata = (props) => {
+const Metadata = ({ message }) => {
     return (
         <div className="Metadata" style={styles.metadata}>
-            <div className="user" style={styles.user}>{props.message.user.displayName}</div>
+            <div className="user" style={styles.user}>{message.user.displayName}</div>
             <div className="time" style={styles.time}>1:16 PM</div>
         </div>
     );

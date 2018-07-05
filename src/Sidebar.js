@@ -3,10 +3,10 @@ import React from 'react';
 import UserInfo from './UserInfo';
 import RoomList from './RoomList';
 
-const Sidebar = (props) => {
+const Sidebar = ({ user }) => {
     return (
         <aside className="Sidebar" style={styles.sidebar}>
-            <UserInfo style={styles.children} user={props.user} />
+            <UserInfo style={styles.children} user={user} />
             <h1 style={styles.h1}>XTBC 18</h1>
             <RoomList />
         </aside>
