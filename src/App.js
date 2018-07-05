@@ -17,11 +17,15 @@ class App extends Component {
     this.setState({ user });
   }
 
+  signOut = () => {
+    this.setState({ user: null });
+  }
+
   render() {
     return (
       <div className="App">
         {this.state.user ? (
-          <Main user={this.state.user} />
+          <Main user={this.state.user} signOut={this.signOut} />
         ) : (
           <SignIn signIn={this.signIn} />
         )}

@@ -11,7 +11,7 @@ class SignIn extends Component {
         e.preventDefault();
         this.props.signIn({
             uid: `${this.state.email}-asdfljasdfkljsaf234`,
-            displayName: this.state.email,
+            displayName: this.state.email.slice(0, this.state.email.indexOf('@')),
             email: this.state.email,
         });
         this.setState({

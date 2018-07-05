@@ -3,12 +3,12 @@ import React from 'react';
 import Avatar from './Avatar';
 import SignOutButton from './SignOutButton';
 
-const UserInfo = ({ user, style }) => {
+const UserInfo = ({ user, style, signOut }) => {
     return (
         <div className="UserInfo" style={{...style, ...styles.info}}>
             <Avatar style={styles.avatar} user={user} />
             <div className="user" style={styles.user}>{user.displayName}</div>
-            <SignOutButton />
+            <SignOutButton signOut={signOut} />
         </div>
     );
 };
