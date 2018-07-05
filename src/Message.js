@@ -25,7 +25,7 @@ const styles = {
     },
 
     details: {
-        flex: '1',
+        flex: 1,
         paddingLeft: '0.5rem',
     },
 }

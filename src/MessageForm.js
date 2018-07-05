@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         border: '2px solid #999',
         borderRadius: '0.5rem',
         margin: '0.25rem',
-        padding: '0',
+        padding: 0,
     },
 
     chatIcon: {
@@ -68,12 +68,12 @@ const styles = StyleSheet.create({
     },
 
     input: {
-        flex: '1',
+        flex: 1,
         fontSize: '1.2rem',
-        border: '0',
+        border: 0,
 
         ':focus': {
-            outline: '0',
+            outline: 0,
         },  
     },
 

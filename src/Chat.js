@@ -57,7 +57,7 @@ class Chat extends Component {
 }
 
 const styles = {
-    flex: '1',
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
 }

@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         border: '1px solid rgba(0,0,0,0.3)',
         fontSize: '1rem',
         width: '100%',
-        opacity: '0.6',
+        opacity: 0.6,
 
         ':focus': {
             border: '1px solid rgba(73, 90, 41, 0.5)',

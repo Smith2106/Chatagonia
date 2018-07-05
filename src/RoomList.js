@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
 
     ul: {
         listStyle: 'none',
-        marginLeft: '0',
-        paddingLeft: '0',
+        marginLeft: 0,
+        paddingLeft: 0,
     },
 
     li: {

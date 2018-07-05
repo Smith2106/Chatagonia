@@ -11,8 +11,8 @@ const SignOutButton = () => {
 
 const styles = StyleSheet.create({
     button: {
-        border: '0',
-        padding: '0',
+        border: 0,
+        padding: 0,
         backgroundColor: 'transparent',
         color: 'rgba(255, 255, 255, 0.6)',
         fontSize: '1.2rem',

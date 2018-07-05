@@ -22,12 +22,12 @@ const styles = {
 
     roomInfoH2: {
         fontSize: '1.1rem',
-        margin: '0',
+        margin: 0,
     },
 
     roomInfoP: {
         color: '#999',
-        margin: '0',
+        margin: 0,
         fontSize: '0.8rem',
     },
 };

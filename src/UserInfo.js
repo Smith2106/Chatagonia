@@ -25,7 +25,7 @@ const styles = {
     },
 
     user: {
-        flex: '1',
+        flex: 1,
     },
 };
 
