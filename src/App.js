@@ -14,9 +14,7 @@ class App extends Component {
   }
 
   signIn = (user) => {
-    this.setState({
-      user
-    });
+    this.setState({ user });
   }
 
   render() {

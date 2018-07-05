@@ -4,17 +4,17 @@ import { StyleSheet, css } from 'aphrodite';
 class SignIn extends Component {
 
     state = {
-        uid: '',
-        displayName: '',
         email: '',
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.signIn({...this.state});
+        this.props.signIn({
+            uid: `${this.state.email}-asdfljasdfkljsaf234`,
+            displayName: this.state.email,
+            email: this.state.email,
+        });
         this.setState({
-            uid: '',
-            displayName: '',
             email: '',
         });
     }
@@ -35,27 +35,9 @@ class SignIn extends Component {
                         required    
                         type="email"
                         name="email"
-                        placeholder="Enter an email."
+                        placeholder="Enter your email."
                         value={this.state.email}
                         onChange={(e) => this.handleChange(e, 'email')}
-                        className={css(styles.input)}
-                    />
-                    <input 
-                        required    
-                        type="text"
-                        name="displayName"
-                        value={this.state.displayName}
-                        placeholder="Enter a display name."
-                        onChange={(e) => this.handleChange(e, 'displayName')}
-                        className={css(styles.input)}
-                    />
-                    <input
-                        required    
-                        type="text"
-                        name="uid"
-                        placeholder="Enter a user ID."
-                        value={this.state.uid}
-                        onChange={(e) => this.handleChange(e, 'uid')}
                         className={css(styles.input)}
                     />
                     <button type="submit" className={css(styles.button)}>Sign In</button>
