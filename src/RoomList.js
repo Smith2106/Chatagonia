@@ -1,20 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-const RoomList = (props) => {
-    return (
-        <nav className={`RoomList ${css(styles.roomList)}`}>
-            <h2 className={css(styles.h2)}>Rooms</h2>
-            <ul className={css(styles.ul)}>
-                <li className={css(styles.li)}>
-                    <a className={css(styles.a)} href="#">general</a>
-                </li>
-                <li className={css(styles.li)}>
-                    <a className={css(styles.a)} href="#">random</a>
-                </li>
-            </ul>
-        </nav>
-    );
+class RoomList extends Component {
+    handleChange = (e) => {
+        console.log(e.target.textContent);
+        this.props.changeChat(e.target.textContent);
+    }
+
+    render() {
+        return (
+            <nav className={`RoomList ${css(styles.roomList)}`}>
+                <h2 className={css(styles.h2)}>Rooms</h2>
+                <ul className={css(styles.ul)}>
+                    <li className={css(styles.li)}>
+                        <a 
+                            className={css(styles.button)} 
+                            href="#"
+                            onClick={this.handleChange}
+                        >
+                            general
+                        </a>
+                    </li>
+                    <li className={css(styles.li)}>
+                        <a 
+                            className={css(styles.button)} 
+                            href="#"
+                            onClick={this.handleChange}
+                        >
+                            random
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -36,10 +55,12 @@ const styles = StyleSheet.create({
         marginBottom: '0.5rem',
     },
 
-    a: {
+    button: {
         display: 'block',
         color: 'whitesmoke',
         textDecoration: 'none',
+        background: 'rgba(0,0,0,0)',
+        border: 'none',
 
         ':before': {
             content: "'# '",

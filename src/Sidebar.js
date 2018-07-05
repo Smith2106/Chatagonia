@@ -3,12 +3,12 @@ import React from 'react';
 import UserInfo from './UserInfo';
 import RoomList from './RoomList';
 
-const Sidebar = ({ user, signOut }) => {
+const Sidebar = ({ user, signOut, changeChat }) => {
     return (
         <aside className="Sidebar" style={styles.sidebar}>
             <UserInfo style={styles.children} user={user} signOut={signOut} />
             <h1 style={styles.h1}>XTBC 18</h1>
-            <RoomList />
+            <RoomList changeChat={changeChat} />
         </aside>
     );
 };
