@@ -34,7 +34,7 @@ class SignIn extends Component {
                         required    
                         type="email"
                         name="email"
-                        placeholder="Enter you email."
+                        placeholder="Enter an email."
                         value={this.state.email}
                         onChange={(e) => this.handleChange(e, 'email')}
                         style={styles.input}
@@ -44,7 +44,7 @@ class SignIn extends Component {
                         type="text"
                         name="displayName"
                         value={this.state.displayName}
-                        placeholder="Enter you display name."
+                        placeholder="Enter a display name."
                         onChange={(e) => this.handleChange(e, 'displayName')}
                         style={styles.input}
                     />
@@ -52,7 +52,7 @@ class SignIn extends Component {
                         required    
                         type="text"
                         name="uid"
-                        placeholder="Enter you user ID."
+                        placeholder="Enter a user ID."
                         value={this.state.uid}
                         onChange={(e) => this.handleChange(e, 'uid')}
                         style={styles.input}
@@ -80,7 +80,7 @@ const styles = {
     input: {
         margin: '0.3rem',
         padding: '0.5rem',
-        boxShadow: '2px 2px 2px lightgrey',
+        boxShadow: '2px 2px 2px rgba(0,0,0,0.3)',
         borderRadius: '2px',
         border: '1px solid rgba(0,0,0,0.3)',
         fontSize: '1rem',

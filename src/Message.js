@@ -6,7 +6,7 @@ import Metadata from './Metadata';
 const Message = (props) => {
     return (
         <div className="Message" style={styles.message}>
-          <Avatar />
+          <Avatar user={props.message.user} />
           <div className="details" style={styles.details}>
             <Metadata message={props.message} />
             <div className="body">
