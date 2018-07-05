@@ -1,15 +1,14 @@
 import React from 'react';
 
 import Avatar from './Avatar';
+import SignOutButton from './SignOutButton';
 
-const UserInfo = props => {
+const UserInfo = ({ user, style }) => {
     return (
-        <div className="UserInfo" style={{...props.style, ...styles.info}}>
-            <Avatar style={styles.avatar} user={props.user} />
-            <div className="user" style={styles.user}>{props.user.displayName}</div>
-            <a href="#" style={styles.link}>
-                <i className="fas fa-sign-out-alt"></i>
-            </a>
+        <div className="UserInfo" style={{...style, ...styles.info}}>
+            <Avatar style={styles.avatar} user={user} />
+            <div className="user" style={styles.user}>{user.displayName}</div>
+            <SignOutButton />
         </div>
     );
 };
@@ -28,15 +27,6 @@ const styles = {
     user: {
         flex: '1',
     },
-
-    link: {
-        border: '0',
-        padding: '0',
-        backgroundColor: 'transparent',
-        color: 'rgba(255, 255, 255, 0.6)',
-        fontSize: '1.2rem',
-        transition: 'color 0.25s ease-out',
-    }
 };
 
 export default UserInfo;
