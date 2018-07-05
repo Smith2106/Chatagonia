@@ -1,23 +1,14 @@
 import React from 'react';
 
 import UserInfo from './UserInfo';
+import RoomList from './RoomList';
 
 const Sidebar = (props) => {
     return (
         <aside className="Sidebar" style={styles.sidebar}>
             <UserInfo style={styles.children} user={props.user} />
             <h1 style={styles.h1}>XTBC 18</h1>
-            <nav className="RoomList" style={styles.children}>
-                <h2 style={styles.roomlistH2}>Rooms</h2>
-                <ul style={styles.roomlistUl}>
-                    <li style={styles.roomlistLi}>
-                        <a style={styles.roomlistA} href="#">general</a>
-                    </li>
-                    <li style={styles.roomlistLi}>
-                        <a style={styles.roomlistA} href="#">random</a>
-                    </li>
-                </ul>
-            </nav>
+            <RoomList />
         </aside>
     );
 };
@@ -41,26 +32,6 @@ const styles = {
         fontSize: '1.2rem',
         marginTop: '0',
         padding: '0 1rem',
-    },
-
-    roomlistH2: {
-        fontSize: '1rem',
-    },
-
-    roomlistUl: {
-        listStyle: 'none',
-        marginLeft: '0',
-        paddingLeft: '0',
-    },
-
-    roomlistLi: {
-        marginBottom: '0.5rem',
-    },
-
-    roomlistA: {
-        display: 'block',
-        color: 'whitesmoke',
-        textDecoration: 'none',
     },
 };
 

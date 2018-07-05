@@ -5,14 +5,6 @@ body {
     margin: 0;
 }
 
-.RoomList li a::before {
-    content: '# ';
-}
-
-.RoomList li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
 .Avatar {
     height: 40px;
     width: 40px;
