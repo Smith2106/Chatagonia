@@ -8,17 +8,21 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    const user = JSON.parse(localStorage.getItem('user')) || {};
+
     this.state = {
-      user: null,
+      user,
     };
   }
 
   signIn = (user) => {
     this.setState({ user });
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   signOut = () => {
     this.setState({ user: null });
+    localStorage.removeItem('user')
   }
 
   render() {
