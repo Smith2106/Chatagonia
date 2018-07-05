@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StyleSheet, css } from 'aphrodite';
 
 class MessageForm extends Component {
     state = {
@@ -20,11 +21,10 @@ class MessageForm extends Component {
     render() {
         return (
             <form 
-                className="MessageForm"
+                className={`MessageForm ${css(styles.messageForm)}`}
                 onSubmit={this.handleSubmit}
-                style={styles.messageForm}
             >
-                <div className="chatIcon" style={styles.chatIcon}>
+                <div className={`chatIcon ${css(styles.chatIcon)}`}>
                     <i className="fas fa-comment-alt"></i>
                 </div>
                 <input
@@ -35,9 +35,9 @@ class MessageForm extends Component {
                     placeholder="Type a message..."
                     value={this.state.body}
                     onChange={this.handleChage}
-                    style={styles.input}
+                    className={css(styles.input)}
                 />
-                <button type="submit" style={styles.button}>
+                <button type="submit" className={css(styles.button)}>
                     <i className="far fa-paper-plane" title="Send"></i>
                 </button>
             </form>
@@ -45,7 +45,7 @@ class MessageForm extends Component {
     }
 }
 
-const styles = {
+const styles = StyleSheet.create({
     messageForm: {
         backgroundColor: 'white',
         height: '3rem',
@@ -71,6 +71,10 @@ const styles = {
         flex: '1',
         fontSize: '1.2rem',
         border: '0',
+
+        ':focus': {
+            outline: '0',
+        },  
     },
 
     button: {
@@ -83,6 +87,6 @@ const styles = {
         borderBottomRightRadius: '0.5rem',
         border: '1px solid white',
     }
-}
+});
 
 export default MessageForm;
