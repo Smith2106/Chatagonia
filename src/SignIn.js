@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
+import * as auth from './auth';
+
 class SignIn extends Component {
 
     state = {
         email: '',
+        password: '',
     };
 
-    handleSubmit = (e) => {
+    authWithEmailPassword = (e) => {
         e.preventDefault();
-        this.props.signIn({
-            uid: `${this.state.email}-asdfljasdfkljsaf234`,
-            displayName: this.state.email.slice(0, this.state.email.indexOf('@')),
-            email: this.state.email,
-        });
-        this.setState({
-            email: '',
-        });
+        const { email, password } = this.state;
+
+        auth.signInEmailPassword(email, password)
+            .then(authUser => {
+                this.setState({ email: '', password: '' });
+                this.props.signIn({
+                    email: authUser.user.email,
+                    displayName: authUser.user.displayName, 
+                    uid: authUser.user.uid
+                });
+            });
     }
 
     handleChange = (e, key) => {
@@ -26,10 +32,12 @@ class SignIn extends Component {
     }
 
     render() {
+        const isInvalid = this.state.email === '' || this.state.password === '';
+
         return (
             <div className={`SignIn ${css(styles.container)}`}>
                 <h1 className={css(styles.title)}>Chatagonia</h1>
-                <form onSubmit={this.handleSubmit} className={css(styles.form)}>
+                <form onSubmit={this.authWithEmailPassword} className={css(styles.form)} ref={(form) => this.loginForm = form} >
                     <input 
                         autoFocus
                         required    
@@ -39,8 +47,23 @@ class SignIn extends Component {
                         value={this.state.email}
                         onChange={(e) => this.handleChange(e, 'email')}
                         className={css(styles.input)}
+                        ref={(input) => this.emailInput = input}
                     />
-                    <button type="submit" className={css(styles.button)}>Sign In</button>
+                    <input 
+                        required
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password."
+                        value={this.state.password}
+                        onChange={(e) => this.handleChange(e, 'password')}
+                        className={css(styles.input)}
+                        ref={(input) => this.passwordInput = input}
+                    />
+                    <button 
+                        type="submit" 
+                        className={css(styles.button)}
+                        disabled={isInvalid}
+                    >Sign In</button>
                 </form>
             </div>
         );

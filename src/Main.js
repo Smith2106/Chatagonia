@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Sidebar from './Sidebar';
 import Chat from './Chat';
-import base from './base';
+import { base } from './base';
 
 class Main extends Component {
     state = {
@@ -11,7 +11,7 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        base.fetch(this.state.chatRoom, {
+        base.fetch(`chatRooms/${this.state.chatRoom}`, {
             context: this,
             asArray: true,
             then(messages) {
@@ -31,7 +31,7 @@ class Main extends Component {
         });
 
         this.setState({ messages }, () => {
-            base.post(this.state.chatRoom, {
+            base.post(`chatRooms/${this.state.chatRoom}`, {
                 data: this.state.messages,
             });
         });
@@ -39,7 +39,7 @@ class Main extends Component {
 
     changeChat = (chatRoom) => {
         this.setState({ chatRoom }, () => {
-            base.fetch(this.state.chatRoom, {
+            base.fetch(`chatRooms/${this.state.chatRoom}`, {
                 context: this,
                 asArray: true,
                 then(messages) {

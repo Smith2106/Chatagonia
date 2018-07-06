@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import './App.css';
 import Main from './Main';
 import SignIn from './SignIn';
+import * as auth from './auth';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    const user = JSON.parse(localStorage.getItem('user')) || {};
+    const user = null;
 
     this.state = {
       user,
@@ -16,13 +17,12 @@ class App extends Component {
   }
 
   signIn = (user) => {
+    console.log(user);
     this.setState({ user });
-    localStorage.setItem('user', JSON.stringify(user));
   }
 
   signOut = () => {
     this.setState({ user: null });
-    localStorage.removeItem('user')
   }
 
   render() {
