@@ -4,7 +4,7 @@ const ChatHeader = ({ currentRoom }) => {
     return (
         <header className="ChatHeader" style={styles.chatHeader}>
             <div className="roomInfo">
-                <h2 style={styles.roomInfoH2}>#{currentRoom.roomName}</h2>
+                <h2 style={styles.roomInfoH2}>#{currentRoom.name}</h2>
                 <p style={styles.roomInfoP}>{currentRoom.description}</p>
             </div>
         </header>

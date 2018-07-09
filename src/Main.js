@@ -7,24 +7,24 @@ import { base } from './base';
 class Main extends Component {
     state = {
         currentRoom: {
-            roomName: 'general',
+            name: 'general',
             description: 'does stuff'
         },
         messages: [],
         rooms: {
             general: {
-                roomName: 'general',
+                name: 'general',
                 description: 'does stuff',
             },
             s3Morning: {
-                roomName: 's3Morning',
+                name: 's3Morning',
                 description: 'does other stuff',
             },
         },
     }
 
     componentDidMount() {
-        base.fetch(`rooms/${this.state.currentRoom.roomName}`, {
+        base.fetch(`rooms/${this.state.currentRoom.name}`, {
             context: this,
             asArray: true,
             then(messages) {
@@ -44,7 +44,7 @@ class Main extends Component {
         });
 
         this.setState({ messages }, () => {
-            base.post(`rooms/${this.state.currentRoom.roomName}`, {
+            base.post(`rooms/${this.state.currentRoom.name}`, {
                 data: this.state.messages,
             });
         });
@@ -52,7 +52,7 @@ class Main extends Component {
 
     setCurrentRoom = (currentRoom) => {
         this.setState({ currentRoom }, () => {
-            base.fetch(`rooms/${this.state.currentRoom.roomName}`, {
+            base.fetch(`rooms/${this.state.currentRoom.name}`, {
                 context: this,
                 asArray: true,
                 then(messages) {

@@ -10,9 +10,9 @@ const MessageList = ({ messages, currentRoom }) => {
                 style={styles.roomAnnouncement}
             >
                 <h3 styles={styles.h3}>
-                    #{currentRoom.roomName}
+                    #{currentRoom.name}
                 </h3>
-                <p>This is the very beginning of the #{currentRoom.roomName} room.</p>
+                <p>This is the very beginning of the #{currentRoom.name} room.</p>
             </div>
 
             { 
