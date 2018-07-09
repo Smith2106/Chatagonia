@@ -30,6 +30,7 @@ class App extends Component {
 
   signOut = () => {
     this.setState({ user: null });
+    auth.signOut();
   }
 
   render() {

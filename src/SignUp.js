@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-import * as auth from './auth';
+import { auth, googleProvider } from './base';
 
 class SignUp extends Component {
 
@@ -15,13 +15,20 @@ class SignUp extends Component {
         e.preventDefault();
         const { email, password, displayName } = this.state;
 
-        auth.createUserEmailPassword(email, password)
+        auth.createUserWithEmailAndPassword(email, password)
             .then(authUser => {
                 authUser.user.updateProfile({displayName})
                     .then(() => {
                         this.setState({ email: '', password: '', displayName: ''});
                         this.props.signIn(authUser.user);
                     });
+            });
+    }
+
+    authGoogle = () => {
+        auth.signInWithPopup(googleProvider)
+            .then(result => {
+                this.props.signIn(result.user);
             });
     }
 
@@ -74,6 +81,13 @@ class SignUp extends Component {
                         className={css(styles.button)}
                         disabled={isInvalid}
                     >Sign Up</button>
+                    <button
+                        type="button"
+                        className={css(styles.button)}
+                        onClick={this.authGoogle}
+                    >
+                        Sign in with Google
+                    </button>
                 </form>
             </div>
         );

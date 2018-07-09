@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-import * as auth from './auth';
+import { auth } from './base';
 
 class SignIn extends Component {
 
@@ -14,7 +14,7 @@ class SignIn extends Component {
         e.preventDefault();
         const { email, password } = this.state;
 
-        auth.signInEmailPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
             .then(authUser => {
                 this.setState({ email: '', password: '' });
                 this.props.signIn({
