@@ -19,17 +19,16 @@ class App extends Component {
 
   componentDidMount() {
     auth.onAuthStateChanged(user => {
-      this.setState({user});
+      if (user) {
+        this.setState({user});
+      }
+      else {
+        this.setState({user: null});
+      }
     });
   }
 
-  signIn = (user) => {
-    console.log(user);
-    this.setState({ user });
-  }
-
   signOut = () => {
-    this.setState({ user: null });
     auth.signOut();
   }
 
@@ -39,7 +38,7 @@ class App extends Component {
         {this.state.user ? (
           <Main user={this.state.user} signOut={this.signOut} />
         ) : (
-          <SignUp signIn={this.signIn} />
+          <SignUp />
         )}
       </div>
     );

@@ -20,16 +20,12 @@ class SignUp extends Component {
                 authUser.user.updateProfile({displayName})
                     .then(() => {
                         this.setState({ email: '', password: '', displayName: ''});
-                        this.props.signIn(authUser.user);
                     });
             });
     }
 
     authGoogle = () => {
         auth.signInWithPopup(googleProvider)
-            .then(result => {
-                this.props.signIn(result.user);
-            });
     }
 
     handleChange = (e, key) => {
