@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Main from './Main';
 import SignIn from './SignIn';
+import SignUp from './SignUp';
 import * as auth from './auth';
 
 class App extends Component {
@@ -31,7 +32,7 @@ class App extends Component {
         {this.state.user ? (
           <Main user={this.state.user} signOut={this.signOut} />
         ) : (
-          <SignIn signIn={this.signIn} />
+          <SignUp signIn={this.signIn} />
         )}
       </div>
     );
