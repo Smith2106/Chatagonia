@@ -20,11 +20,7 @@ class SignUp extends Component {
                 authUser.user.updateProfile({displayName})
                     .then(() => {
                         this.setState({ email: '', password: '', displayName: ''});
-                        this.props.signIn({
-                            email: authUser.user.email,
-                            displayName: authUser.user.displayName, 
-                            uid: authUser.user.uid
-                        });
+                        this.props.signIn(authUser.user);
                     });
             });
     }

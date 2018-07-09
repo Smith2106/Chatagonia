@@ -4,7 +4,7 @@ import './App.css';
 import Main from './Main';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-import * as auth from './auth';
+import { auth } from './base';
 
 class App extends Component {
   constructor(props) {
@@ -15,6 +15,12 @@ class App extends Component {
     this.state = {
       user,
     };
+  }
+
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      this.setState({user});
+    });
   }
 
   signIn = (user) => {
