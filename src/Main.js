@@ -61,6 +61,7 @@ class Main extends Component {
                     user={this.props.user}
                     addMessage={this.addMessage}
                     messages={this.state.messages}
+                    chatRoom={this.state.chatRoom}
                 />
             </div>
         );

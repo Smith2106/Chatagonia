@@ -2,7 +2,7 @@ import React from 'react';
 
 import Message from './Message';
 
-const MessageList = ({ messages }) => {
+const MessageList = ({ messages, chatRoom }) => {
     return (
         <div className="MessageList" style={styles.messageList}>
             <div
@@ -10,9 +10,9 @@ const MessageList = ({ messages }) => {
                 style={styles.roomAnnouncement}
             >
                 <h3 styles={styles.h3}>
-                    #general
+                    #{chatRoom}
                 </h3>
-                <p>This is the very beginning of the #general room.</p>
+                <p>This is the very beginning of the #{chatRoom} room.</p>
             </div>
 
             { 
