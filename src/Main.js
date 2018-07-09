@@ -6,7 +6,10 @@ import { base } from './base';
 
 class Main extends Component {
     state = {
-        chatRoom: 'general',
+        currentRoom: {
+            roomName: 'general',
+            description: 'does stuff'
+        },
         messages: [],
         rooms: {
             general: {
@@ -21,7 +24,7 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        base.fetch(`chatRooms/${this.state.chatRoom}`, {
+        base.fetch(`rooms/${this.state.currentRoom.roomName}`, {
             context: this,
             asArray: true,
             then(messages) {
@@ -41,16 +44,15 @@ class Main extends Component {
         });
 
         this.setState({ messages }, () => {
-            console.log(this.state.chatRoom);
-            base.post(`chatRooms/${this.state.chatRoom}`, {
+            base.post(`rooms/${this.state.currentRoom.roomName}`, {
                 data: this.state.messages,
             });
         });
     }
 
-    changeChat = (chatRoom) => {
-        this.setState({ chatRoom }, () => {
-            base.fetch(`chatRooms/${this.state.chatRoom}`, {
+    setCurrentRoom = (currentRoom) => {
+        this.setState({ currentRoom }, () => {
+            base.fetch(`rooms/${this.state.currentRoom.roomName}`, {
                 context: this,
                 asArray: true,
                 then(messages) {
@@ -66,14 +68,14 @@ class Main extends Component {
                 <Sidebar 
                     user={this.props.user} 
                     signOut={this.props.signOut} 
-                    changeChat={this.changeChat}
+                    setCurrentRoom={this.setCurrentRoom}
                     rooms={this.state.rooms}
                 />
                 <Chat 
                     user={this.props.user}
                     addMessage={this.addMessage}
                     messages={this.state.messages}
-                    chatRoom={this.state.chatRoom}
+                    currentRoom={this.state.currentRoom}
                 />
             </div>
         );

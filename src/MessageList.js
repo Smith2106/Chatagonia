@@ -2,7 +2,7 @@ import React from 'react';
 
 import Message from './Message';
 
-const MessageList = ({ messages, chatRoom }) => {
+const MessageList = ({ messages, currentRoom }) => {
     return (
         <div className="MessageList" style={styles.messageList}>
             <div
@@ -10,9 +10,9 @@ const MessageList = ({ messages, chatRoom }) => {
                 style={styles.roomAnnouncement}
             >
                 <h3 styles={styles.h3}>
-                    #{chatRoom}
+                    #{currentRoom.roomName}
                 </h3>
-                <p>This is the very beginning of the #{chatRoom} room.</p>
+                <p>This is the very beginning of the #{currentRoom.roomName} room.</p>
             </div>
 
             { 

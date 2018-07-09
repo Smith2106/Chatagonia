@@ -6,7 +6,7 @@ import Room from './Room';
 class RoomList extends Component {
     handleChange = (e) => {
         console.log(e.target.textContent);
-        this.props.changeChat(e.target.textContent);
+        this.props.setCurrentRoom(this.props.rooms[e.target.textContent]);
     }
 
     render() {
