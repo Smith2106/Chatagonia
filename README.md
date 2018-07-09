@@ -2,6 +2,22 @@
 
 This final project for Xtern Bootcamp 2018 Session 3.
 
+## Day 8 Homework
+
+* Set the current room when you click a room in the sidebar.
+
+### Bonus Credit
+
+* Sync the list of rooms with firebase (using `base.syncState()`).
+
+### Super Mega Bonus Credit
+
+* Sync each room's messages seperately.
+
+### Super Mega Bonus Credit Hyper Fighting
+
+* Add a form to create a new room.
+
 ## Day 7 Homework
 
 ALL HYPER FIGHTING, ALL THE TIME!
