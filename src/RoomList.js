@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
+import Room from './Room';
+
 class RoomList extends Component {
     handleChange = (e) => {
         console.log(e.target.textContent);
@@ -12,24 +14,9 @@ class RoomList extends Component {
             <nav className={`RoomList ${css(styles.roomList)}`}>
                 <h2 className={css(styles.h2)}>Rooms</h2>
                 <ul className={css(styles.ul)}>
-                    <li className={css(styles.li)}>
-                        <a 
-                            className={css(styles.button)} 
-                            href="#"
-                            onClick={this.handleChange}
-                        >
-                            general
-                        </a>
-                    </li>
-                    <li className={css(styles.li)}>
-                        <a 
-                            className={css(styles.button)} 
-                            href="#"
-                            onClick={this.handleChange}
-                        >
-                            random
-                        </a>
-                    </li>
+                    {Object.keys(this.props.rooms).map(roomName => (
+                        <Room handleChange={this.handleChange} roomName={roomName} key={roomName} />
+                    ))}
                 </ul>
             </nav>
         );

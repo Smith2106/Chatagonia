@@ -8,6 +8,16 @@ class Main extends Component {
     state = {
         chatRoom: 'general',
         messages: [],
+        rooms: {
+            general: {
+                roomName: 'general',
+                description: 'does stuff',
+            },
+            s3Morning: {
+                roomName: 's3Morning',
+                description: 'does other stuff',
+            },
+        },
     }
 
     componentDidMount() {
@@ -57,6 +67,7 @@ class Main extends Component {
                     user={this.props.user} 
                     signOut={this.props.signOut} 
                     changeChat={this.changeChat}
+                    rooms={this.state.rooms}
                 />
                 <Chat 
                     user={this.props.user}
