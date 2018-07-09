@@ -132,7 +132,10 @@ const styles = StyleSheet.create({
         height: '100vh',
         flexDirection: 'column',
         justifyContent: 'center',
-        background: 'lightsteelblue',
+        backgroundImage: "url('https://images.unsplash.com/photo-1470399542183-e6245d78c479?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2f37382c0d0203b8be43fea0a8380965&auto=format&fit=crop&w=967&q=80')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
     },
 
     title: {
