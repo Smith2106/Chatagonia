@@ -31,6 +31,12 @@ class Main extends Component {
                 this.setState({messages});
             }
         });
+
+        base.syncState('rooms', {
+            context: this,
+            asArray: false,
+            state: 'rooms',
+        });
     }
 
     addMessage = (body) => {
