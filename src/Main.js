@@ -16,7 +16,7 @@ class Main extends Component {
             asArray: true,
             then(messages) {
                 this.setState({messages});
-            },
+            }
         });
     }
 
@@ -31,6 +31,7 @@ class Main extends Component {
         });
 
         this.setState({ messages }, () => {
+            console.log(this.state.chatRoom);
             base.post(`chatRooms/${this.state.chatRoom}`, {
                 data: this.state.messages,
             });

@@ -17,6 +17,7 @@ const app = firebase.initializeApp(config);
 
 // Configure authentication
 const googleProvider = new firebase.auth.GoogleAuthProvider();
+const githubProvider = new firebase.auth.GithubAuthProvider();
 const auth = firebase.auth();
 auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
 
@@ -24,4 +25,4 @@ auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
 const db = firebase.database(app);
 const base = Rebase.createClass(db);
 
-export { app, base, auth, googleProvider };
+export { app, base, auth, googleProvider, githubProvider };

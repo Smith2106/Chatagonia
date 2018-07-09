@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-import { auth, googleProvider } from './base';
+import { auth, googleProvider, githubProvider } from './base';
 
 class SignUp extends Component {
 
@@ -17,6 +17,7 @@ class SignUp extends Component {
 
         auth.createUserWithEmailAndPassword(email, password)
             .then(authUser => {
+                console.log(authUser.displayName);
                 authUser.user.updateProfile({displayName})
                     .then(() => {
                         this.setState({ email: '', password: '', displayName: ''});
@@ -26,6 +27,10 @@ class SignUp extends Component {
 
     authGoogle = () => {
         auth.signInWithPopup(googleProvider)
+    }
+
+    authGithub = () => {
+        auth.signInWithPopup(githubProvider);
     }
 
     handleChange = (e, key) => {
@@ -82,7 +87,16 @@ class SignUp extends Component {
                         className={css(styles.button)}
                         onClick={this.authGoogle}
                     >
+                        <i className={`fab fa-google ${css(styles.button)}`}></i>
                         Sign in with Google
+                    </button>
+                    <button
+                        type="button"
+                        className={css(styles.button)}
+                        onClick={this.authGithub}
+                    >
+                        <i className={`fab fa-github ${css(styles.button)}`}></i>
+                        Sign in with Github
                     </button>
                 </form>
             </div>

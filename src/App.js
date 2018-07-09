@@ -20,7 +20,14 @@ class App extends Component {
   componentDidMount() {
     auth.onAuthStateChanged(user => {
       if (user) {
-        this.setState({user});
+        this.setState({
+          user: {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+          }
+        });
       }
       else {
         this.setState({user: null});
