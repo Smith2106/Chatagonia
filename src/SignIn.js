@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
         padding: '2rem 3rem',
         width: '22rem',
         borderRadius: '5px',
-        boxShadow: '2px 2px 2px lightgrey',
     },
 
     input: {
