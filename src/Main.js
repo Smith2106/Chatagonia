@@ -71,6 +71,15 @@ class Main extends Component {
         });
     }
 
+    addRoom = (room) => {
+        this.setState({ 
+            rooms: {
+                ...this.state.rooms,
+                [room.name]: room,
+            } 
+        });
+    }
+
     render() {
         return (
             <Switch className="Main">
@@ -92,7 +101,7 @@ class Main extends Component {
                 )}/>
                 <Route 
                     exact path="/createRoom" 
-                    render={() => <RoomForm />}
+                    render={() => <RoomForm addRoom={this.addRoom}/>}
                 />
             </Switch>
         );
