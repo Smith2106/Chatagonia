@@ -3,8 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import './App.css';
 import Main from './Main';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
+import Home from './Home';
 import { auth } from './base';
 
 class App extends Component {
@@ -47,7 +46,7 @@ class App extends Component {
           <Route path='/' render={() => (
           this.state.user
             ? <Main user={this.state.user} signOut={this.signOut} />
-            : <SignUp />
+            : <Home />
           )
          } />
         </BrowserRouter>

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-import { auth, googleProvider, githubProvider } from './base';
-
 class SignUp extends Component {
 
     state = {
@@ -10,28 +8,6 @@ class SignUp extends Component {
         password: '',
         displayName: '',
     };
-
-    authWithEmailPassword = (e) => {
-        e.preventDefault();
-        const { email, password, displayName } = this.state;
-
-        auth.createUserWithEmailAndPassword(email, password)
-            .then(authUser => {
-                console.log(authUser.displayName);
-                authUser.user.updateProfile({displayName})
-                    .then(() => {
-                        this.setState({ email: '', password: '', displayName: ''});
-                    });
-            });
-    }
-
-    authGoogle = () => {
-        auth.signInWithPopup(googleProvider)
-    }
-
-    authGithub = () => {
-        auth.signInWithPopup(githubProvider);
-    }
 
     handleChange = (e, key) => {
         this.setState({
@@ -43,63 +19,72 @@ class SignUp extends Component {
         const isInvalid = this.state.email === '' || this.state.password === '';
 
         return (
-            <div className={`SignIn ${css(styles.container)}`}>
-                <h1 className={css(styles.title)}>Chatagonia</h1>
-                <form onSubmit={this.authWithEmailPassword} className={css(styles.form)} ref={(form) => this.loginForm = form} >
-                    <input 
-                        autoFocus
-                        required    
-                        type="email"
-                        name="email"
-                        placeholder="Enter your email."
-                        value={this.state.email}
-                        onChange={(e) => this.handleChange(e, 'email')}
-                        className={css(styles.input)}
-                        ref={(input) => this.emailInput = input}
-                    />
-                    <input
-                        required    
-                        type="text"
-                        name="displayName"
-                        placeholder="Enter a display name."
-                        value={this.state.displayName}
-                        onChange={(e) => this.handleChange(e, 'displayName')}
-                        className={css(styles.input)}
-                        ref={(input) => this.displayNameInput = input}
-                    />
-                    <input 
-                        required
-                        type="password"
-                        name="password"
-                        placeholder="Enter a password."
-                        value={this.state.password}
-                        onChange={(e) => this.handleChange(e, 'password')}
-                        className={css(styles.input)}
-                        ref={(input) => this.passwordInput = input}
-                    />
-                    <button 
-                        type="submit" 
-                        className={css(styles.button)}
-                        disabled={isInvalid}
-                    >Sign Up</button>
-                    <button
-                        type="button"
-                        className={css(styles.button)}
-                        onClick={this.authGoogle}
-                    >
-                        <i className={`fab fa-google ${css(styles.button)}`}></i>
-                        Sign in with Google
-                    </button>
-                    <button
-                        type="button"
-                        className={css(styles.button)}
-                        onClick={this.authGithub}
-                    >
-                        <i className={`fab fa-github ${css(styles.button)}`}></i>
-                        Sign in with Github
-                    </button>
-                </form>
-            </div>
+            <form onSubmit={this.props.signUp} className={`SignUp ${css(styles.form)}`} ref={(form) => this.loginForm = form} >
+                <input 
+                    autoFocus
+                    required    
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email."
+                    value={this.state.email}
+                    onChange={(e) => {
+                            this.handleChange(e, 'email');
+                            this.props.handleChange(e, 'email');
+                        }
+                    }
+                    className={css(styles.input)}
+                    ref={(input) => this.emailInput = input}
+                />
+                <input
+                    required    
+                    type="text"
+                    name="displayName"
+                    placeholder="Enter a display name."
+                    value={this.state.displayName}
+                    onChange={(e) => {
+                            this.handleChange(e, 'displayName');
+                            this.props.handleChange(e, 'displayName');
+                        }
+                    }
+                    className={css(styles.input)}
+                    ref={(input) => this.displayNameInput = input}
+                />
+                <input 
+                    required
+                    type="password"
+                    name="password"
+                    placeholder="Enter a password."
+                    value={this.state.password}
+                    onChange={(e) => {
+                            this.handleChange(e, 'password');
+                            this.props.handleChange(e, 'password');
+                        }
+                    }
+                    className={css(styles.input)}
+                    ref={(input) => this.passwordInput = input}
+                />
+                <button 
+                    type="submit" 
+                    className={css(styles.button)}
+                    disabled={isInvalid}
+                >Sign Up</button>
+                <button
+                    type="button"
+                    className={css(styles.button)}
+                    onClick={this.props.authGoogle}
+                >
+                    <i className={`fab fa-google ${css(styles.button)}`}></i>
+                    Sign up with Google
+                </button>
+                <button
+                    type="button"
+                    className={css(styles.button)}
+                    onClick={this.props.authGithub}
+                >
+                    <i className={`fab fa-github ${css(styles.button)}`}></i>
+                    Sign up with Github
+                </button>
+            </form>
         );
     }
 }
