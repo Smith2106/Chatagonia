@@ -1,19 +1,20 @@
 import React from 'react';
+import { StyleSheet, css } from 'aphrodite';
 
 import UserInfo from './UserInfo';
 import RoomList from './RoomList';
 
 const Sidebar = ({ user, signOut, setCurrentRoom, rooms }) => {
     return (
-        <aside className="Sidebar" style={styles.sidebar}>
-            <UserInfo style={styles.children} user={user} signOut={signOut} />
-            <h1 style={styles.h1}>XTBC 18</h1>
+        <aside className={`Sidebar ${css(styles.sidebar)}`}>
+            <UserInfo className={css(styles.children)} user={user} signOut={signOut} />
+            <h1 className={css(styles.h1)}>XTBC 18</h1>
             <RoomList setCurrentRoom={setCurrentRoom} rooms={rooms} />
         </aside>
     );
 };
 
-const styles = {
+const styles = StyleSheet.create({
     sidebar: {
         backgroundColor: '#333344',
         color: 'rgba(255, 255, 255, 0.8)',
@@ -33,6 +34,6 @@ const styles = {
         marginTop: 0,
         padding: '0 1rem',
     },
-};
+});
 
 export default Sidebar;

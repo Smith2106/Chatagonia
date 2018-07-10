@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
+import RoomListHeader from './RoomListHeader'
 import Room from './Room';
 
 class RoomList extends Component {
@@ -12,7 +13,7 @@ class RoomList extends Component {
     render() {
         return (
             <nav className={`RoomList ${css(styles.roomList)}`}>
-                <h2 className={css(styles.h2)}>Rooms</h2>
+                <RoomListHeader />
                 <ul className={css(styles.ul)}>
                     {Object.keys(this.props.rooms).map(roomName => (
                         <Room handleChange={this.handleChange} roomName={roomName} key={roomName} />
@@ -28,10 +29,6 @@ const styles = StyleSheet.create({
         padding: '0 1rem',
     },
 
-    h2: {
-        fontSize: '1rem',
-    },
-
     ul: {
         listStyle: 'none',
         marginLeft: 0,
@@ -40,22 +37,6 @@ const styles = StyleSheet.create({
 
     li: {
         marginBottom: '0.5rem',
-    },
-
-    button: {
-        display: 'block',
-        color: 'whitesmoke',
-        textDecoration: 'none',
-        background: 'rgba(0,0,0,0)',
-        border: 'none',
-
-        ':before': {
-            content: "'# '",
-        },
-
-        ':hover': {
-            backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        },
     },
 });
 
