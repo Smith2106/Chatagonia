@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 import { auth, googleProvider, githubProvider } from './base';
 import SignUp from './SignUp';
@@ -25,6 +25,7 @@ class Home extends Component {
                 authUser.user.updateProfile({displayName})
                     .then(() => {
                         this.setState({ email: '', password: '', displayName: ''});
+                        this.props.history.push('/');
                     });
             });
     }
@@ -36,15 +37,18 @@ class Home extends Component {
         auth.signInWithEmailAndPassword(email, password)
             .then(() => {
                 this.setState({ email: '', password: '' });
+                this.props.history.push('/');
             });
     }
 
     authGoogle = () => {
         auth.signInWithPopup(googleProvider)
+            .then(() => this.props.history.push('/'));
     }
 
     authGithub = () => {
-        auth.signInWithPopup(githubProvider);
+        auth.signInWithPopup(githubProvider)
+            .then(() => this.props.history.push('/'));
     }
 
     handleChange = (e, key) => {
@@ -54,10 +58,6 @@ class Home extends Component {
     }
 
     render() {
-        if (auth.user) {
-            return <Redirect to='/' />
-        }
-
         return (
             <div className={`Home ${css(styles.container)}`}>
                 <h1 className={css(styles.title)}>Chatagonia</h1>
@@ -148,4 +148,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Home;
+export default withRouter(Home);
