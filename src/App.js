@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import './App.css';
 import Main from './Main';
@@ -42,11 +43,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.user ? (
-          <Main user={this.state.user} signOut={this.signOut} />
-        ) : (
-          <SignUp />
-        )}
+        <BrowserRouter>
+          <Route path='/' render={() => (
+          this.state.user
+            ? <Main user={this.state.user} signOut={this.signOut} />
+            : <SignUp />
+          )
+         } />
+        </BrowserRouter>
       </div>
     );
   }

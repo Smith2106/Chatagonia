@@ -32,7 +32,7 @@ class Main extends Component {
             }
         });
 
-        base.syncState('rooms', {
+        base.syncState('roomsList', {
             context: this,
             asArray: false,
             state: 'rooms',
@@ -58,6 +58,7 @@ class Main extends Component {
 
     setCurrentRoom = (currentRoom) => {
         this.setState({ currentRoom }, () => {
+            console.log(this.state.currentRoom);
             base.fetch(`rooms/${this.state.currentRoom.name}`, {
                 context: this,
                 asArray: true,

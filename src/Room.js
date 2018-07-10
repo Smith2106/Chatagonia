@@ -4,13 +4,12 @@ import { StyleSheet, css } from 'aphrodite';
 const Room = ({ handleChange, roomName }) => {
     return (
         <li className={css(styles.li)}>
-            <a 
+            <button 
                 className={css(styles.button)} 
-                href="#"
                 onClick={handleChange}
             >
                 {roomName}
-            </a>
+            </button>
         </li>
     );
 }
