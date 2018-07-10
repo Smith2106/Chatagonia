@@ -21,7 +21,6 @@ class Home extends Component {
 
         auth.createUserWithEmailAndPassword(email, password)
             .then(authUser => {
-                console.log(authUser.displayName);
                 authUser.user.updateProfile({displayName})
                     .then(() => {
                         this.setState({ email: '', password: '', displayName: ''});
