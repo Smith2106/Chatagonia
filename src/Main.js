@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
 import Chat from './Chat';
+import RoomForm from './RoomForm';
 import { base } from './base';
 
 class Main extends Component {
@@ -71,20 +73,28 @@ class Main extends Component {
 
     render() {
         return (
-            <div className="Main" style={styles}>
-                <Sidebar 
-                    user={this.props.user} 
-                    signOut={this.props.signOut} 
-                    setCurrentRoom={this.setCurrentRoom}
-                    rooms={this.state.rooms}
+            <Switch className="Main">
+                <Route exact path="/" render={() => (
+                    <div style={styles}>
+                        <Sidebar 
+                            user={this.props.user} 
+                            signOut={this.props.signOut} 
+                            setCurrentRoom={this.setCurrentRoom}
+                            rooms={this.state.rooms}
+                        />
+                        <Chat 
+                            user={this.props.user}
+                            addMessage={this.addMessage}
+                            messages={this.state.messages}
+                            currentRoom={this.state.currentRoom}
+                        />
+                    </div>
+                )}/>
+                <Route 
+                    exact path="/createRoom" 
+                    render={() => <RoomForm />}
                 />
-                <Chat 
-                    user={this.props.user}
-                    addMessage={this.addMessage}
-                    messages={this.state.messages}
-                    currentRoom={this.state.currentRoom}
-                />
-            </div>
+            </Switch>
         );
     }
 }

@@ -1,13 +1,14 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import { Link } from 'react-router-dom';
 
 const RoomListHeader = () => {
     return (
         <div className={css(styles.container)}>
             <h2 className={css(styles.h2)}>Rooms</h2>
-            <button className={css(styles.button)}>
+            <Link to="/createRoom" className={css(styles.button)}>
                 <i className="fas fa-plus-circle"></i>
-            </button>
+            </Link>
         </div>
     );
 };
@@ -17,6 +18,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
     },
 
     h2: {

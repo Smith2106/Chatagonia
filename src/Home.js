@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { auth, googleProvider, githubProvider } from './base';
 import SignUp from './SignUp';
@@ -54,7 +54,9 @@ class Home extends Component {
     }
 
     render() {
-        const isInvalid = this.state.email === '' || this.state.password === '';
+        if (auth.user) {
+            return <Redirect to='/' />
+        }
 
         return (
             <div className={`Home ${css(styles.container)}`}>
