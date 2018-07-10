@@ -70,18 +70,18 @@ class SignUp extends Component {
                 >Sign Up</button>
                 <button
                     type="button"
-                    className={css(styles.button)}
+                    className={css(styles.google)}
                     onClick={this.props.authGoogle}
                 >
-                    <i className={`fab fa-google ${css(styles.button)}`}></i>
+                    <i className="fab fa-google"></i>
                     Sign up with Google
                 </button>
                 <button
                     type="button"
-                    className={css(styles.button)}
+                    className={css(styles.github)}
                     onClick={this.props.authGithub}
                 >
-                    <i className={`fab fa-github ${css(styles.button)}`}></i>
+                    <i className='fab fa-github'></i>
                     Sign up with Github
                 </button>
             </form>
@@ -123,32 +123,55 @@ const styles = StyleSheet.create({
         padding: '0.8rem',
         border: 'none',
         background: 'darkolivegreen',
-        color: 'white',
+        color: 'rgba(255,255,255,0.75)',
         fontSize: '1rem',
 
         ':hover': {
             transform: 'scale(1.05)',
             background: 'rgb(73, 90, 41)',
-            border: '0.05px solid lightsteelblue',
+            border: '0.05px solid rgba(0, 0, 0, 0.5)',
             transition: '0.2s',
         },
     },
 
-    container: {
+    google: {
+        margin: '0.5rem',
+        padding: '0.8rem',
+        border: 'none',
+        background: 'rgb(230, 0, 0)',
+        color: 'rgba(255,255,255,0.75)',
+        fontSize: '1rem',
         display: 'flex',
         alignItems: 'center',
-        height: '100vh',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        backgroundImage: "url('https://images.unsplash.com/photo-1470399542183-e6245d78c479?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2f37382c0d0203b8be43fea0a8380965&auto=format&fit=crop&w=967&q=80')",
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+        justifyContent: 'space-between',
+        width: '12rem',
+
+        ':hover': {
+            transform: 'scale(1.05)',
+            background: 'rgb(215, 0, 0)',
+            border: '0.05px solid rgba(0, 0, 0, 0.5)',
+            transition: '0.2s',
+        },
     },
 
-    title: {
-        color: 'darkolivegreen',
-        fontSize: '64px',
+    github: {
+        margin: '0.5rem',
+        padding: '0.8rem',
+        border: 'none',
+        background: '#24292e',
+        color: 'rgba(255,255,255,0.75)',
+        fontSize: '1rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '12rem',
+
+        ':hover': {
+            transform: 'scale(1.05)',
+            background: '#14191e',
+            border: '0.05px solid lightsteelblue',
+            transition: '0.2s',
+        },
     }
 });
 
