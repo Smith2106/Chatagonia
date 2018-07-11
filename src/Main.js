@@ -105,12 +105,18 @@ class Main extends Component {
         });
     }
 
-    removeRoom = (room) => {
-
+    removeRoom = (roomName) => {
+        const rooms = {...this.state.rooms};
+        rooms[roomName] = null;
+        this.setState(
+            { rooms },
+            this.loadValidRoom
+        );
     }
 
-    loadValidRoom() {
-        const roomNames = Object.keys(this.state.rooms);
+    loadValidRoom = () => {
+        const roomNames = Object.keys(this.state.rooms).filter(room => this.state.rooms[room]);
+        console.log(roomNames);
         if (roomNames.length > 0) {
             const roomName = roomNames[0];
             this.props.history.push(`/chat/rooms/${roomName}`);
@@ -133,6 +139,7 @@ class Main extends Component {
                             addMessage={this.addMessage}
                             messages={this.state.messages}
                             currentRoom={this.state.currentRoom}
+                            removeRoom={this.removeRoom}
                         />
                     </div>
                 )}/>

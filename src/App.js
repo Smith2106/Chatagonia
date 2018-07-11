@@ -51,17 +51,17 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-        <Route path='/chat/rooms/:roomName' render={() => (
-          this.state.user.uid
-            ? <Main user={this.state.user} signOut={this.signOut} />
-            : <Redirect to='/' />
-          )} />
-          <Route path='/chat' render={() => (
+          <Route path='/chat/rooms/:roomName' render={() => (
             this.state.user.uid
               ? <Main user={this.state.user} signOut={this.signOut} />
               : <Redirect to='/' />
-          )} />
-          <Route path='/' component={Home} />  
+            )} />
+            <Route path='/chat' render={() => (
+              this.state.user.uid
+                ? <Main user={this.state.user} signOut={this.signOut} />
+                : <Redirect to='/' />
+            )} />
+            <Route path='/' component={Home} />  
          </Switch>
       </div>
     );
