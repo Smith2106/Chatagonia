@@ -6,7 +6,7 @@ const RoomListHeader = () => {
     return (
         <div className={css(styles.container)}>
             <h2 className={css(styles.h2)}>Rooms</h2>
-            <Link to="/createRoom" className={css(styles.button)}>
+            <Link to="/chat/createRoom" className={css(styles.button)}>
                 <i className="fas fa-plus-circle" title="Add room"></i>
             </Link>
         </div>
