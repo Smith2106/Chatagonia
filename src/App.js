@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { withRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 import Main from './Main';
@@ -20,14 +20,7 @@ class App extends Component {
   componentDidMount() {
     auth.onAuthStateChanged(user => {
       if (user) {
-        this.setState({
-          user: {
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-            photoURL: user.photoURL,
-          }
-        });
+        this.signIn(user);
       }
       else {
         this.setState({user: null});
@@ -39,20 +32,33 @@ class App extends Component {
     auth.signOut();
   }
 
+  signIn = (user) => {
+    this.setState({
+      user: {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+      }
+    }, () => {
+      this.props.history.push('/');
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <BrowserRouter>
-          <Route path='/' render={() => (
-          this.state.user
-            ? <Main user={this.state.user} signOut={this.signOut} />
-            : <Home />
-          )
-         } />
-        </BrowserRouter>
+        <Switch>
+            <Route path='/' render={() => (
+            this.state.user
+              ? <Main user={this.state.user} signOut={this.signOut} />
+              : <Home />
+            )
+          } />
+         </Switch>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

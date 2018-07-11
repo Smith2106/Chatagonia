@@ -24,7 +24,6 @@ class Home extends Component {
                 authUser.user.updateProfile({displayName})
                     .then(() => {
                         this.setState({ email: '', password: '', displayName: ''});
-                        this.props.history.push('/');
                     });
             });
     }
@@ -36,18 +35,15 @@ class Home extends Component {
         auth.signInWithEmailAndPassword(email, password)
             .then(() => {
                 this.setState({ email: '', password: '' });
-                this.props.history.push('/');
             });
     }
 
     authGoogle = () => {
-        auth.signInWithPopup(googleProvider)
-            .then(() => this.props.history.push('/'));
+        auth.signInWithPopup(googleProvider);
     }
 
     authGithub = () => {
-        auth.signInWithPopup(githubProvider)
-            .then(() => this.props.history.push('/'));
+        auth.signInWithPopup(githubProvider);
     }
 
     handleChange = (e, key) => {

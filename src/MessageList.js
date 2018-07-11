@@ -11,8 +11,10 @@ class MessageList extends Component {
         this.scrollToBottom();
     }
 
-    componentDidUpdate() {
-        this.scrollToBottom();
+    componentDidUpdate(prevProps) {
+        if (prevProps.messages.length < this.props.messages.length) {
+            this.scrollToBottom();
+        }
     }
 
     render() {
