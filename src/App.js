@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Route, Switch } from 'react-router-dom';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import './App.css';
 import Main from './Main';
@@ -9,8 +9,7 @@ import { auth } from './base';
 class App extends Component {
   constructor(props) {
     super(props);
-
-    const user = null;
+    const user = JSON.parse(localStorage.getItem('user')) || {};
 
     this.state = {
       user,
@@ -30,6 +29,8 @@ class App extends Component {
 
   signOut = () => {
     auth.signOut();
+    this.props.history.push('/');
+    localStorage.setItem('user', {});
   }
 
   signIn = (user) => {
@@ -41,7 +42,8 @@ class App extends Component {
         photoURL: user.photoURL,
       }
     }, () => {
-      this.props.history.push('/');
+      this.props.history.push(`/chat`);
+      localStorage.setItem('user', JSON.stringify(this.state.user));
     });
   }
 
@@ -49,12 +51,17 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-            <Route path='/' render={() => (
-            this.state.user
+        <Route path='/chat/rooms/:roomName' render={() => (
+          this.state.user.uid
+            ? <Main user={this.state.user} signOut={this.signOut} />
+            : <Redirect to='/' />
+          )} />
+          <Route path='/chat' render={() => (
+            this.state.user.uid
               ? <Main user={this.state.user} signOut={this.signOut} />
-              : <Home />
-            )
-          } />
+              : <Redirect to='/' />
+          )} />
+          <Route path='/' component={Home} />  
          </Switch>
       </div>
     );
