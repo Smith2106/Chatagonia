@@ -18,7 +18,7 @@ class RoomForm extends Component {
             description,
         });
 
-        this.props.history.push('/');
+        this.props.history.push(`/chat/rooms/${this.state.name}`);
     }
 
     handleChange = (e, key) => {
