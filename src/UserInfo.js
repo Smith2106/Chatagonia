@@ -22,6 +22,7 @@ const styles = {
 
     avatar: {
         marginRight: '0.5rem',
+        marginLeft: '0.5rem',
     },
 
     user: {
