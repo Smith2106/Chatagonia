@@ -26,7 +26,7 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        base.fetch(`rooms/${this.state.currentRoom.name}`, {
+        base.fetch(`messages/${this.state.currentRoom.name}`, {
             context: this,
             asArray: true,
             then(messages) {
@@ -34,7 +34,7 @@ class Main extends Component {
             }
         });
 
-        base.syncState('roomsList', {
+        base.syncState('rooms', {
             context: this,
             asArray: false,
             state: 'rooms',
@@ -49,10 +49,11 @@ class Main extends Component {
             id: `${user.uid}-${Date.now()}`,
             user,
             body,
+            createdAt: Date.now(),
         });
 
         this.setState({ messages }, () => {
-            base.post(`rooms/${this.state.currentRoom.name}`, {
+            base.post(`messages/${this.state.currentRoom.name}`, {
                 data: this.state.messages,
             });
         });
@@ -61,7 +62,7 @@ class Main extends Component {
     setCurrentRoom = (currentRoom) => {
         this.setState({ currentRoom }, () => {
             console.log(this.state.currentRoom);
-            base.fetch(`rooms/${this.state.currentRoom.name}`, {
+            base.fetch(`messages/${this.state.currentRoom.name}`, {
                 context: this,
                 asArray: true,
                 then(messages) {

@@ -1,10 +1,16 @@
 import React from 'react';
+import moment from 'moment';
 
 const Metadata = ({ message }) => {
     return (
         <div className="Metadata" style={styles.metadata}>
             <div className="user" style={styles.user}>{message.user.displayName}</div>
-            <div className="time" style={styles.time}>1:16 PM</div>
+            <div className="time" style={styles.time}>
+                {   Date.now() - message.createdAt > (3600 * 24)
+                    ? moment(message.createdAt).format('D MMM @ h:m A')
+                    : moment(message.createdAt).fromNow()
+                }
+            </div>
         </div>
     );
 };
