@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
 import Chat from './Chat';
@@ -13,16 +13,7 @@ class Main extends Component {
             description: 'does stuff'
         },
         messages: [],
-        rooms: {
-            general: {
-                name: 'general',
-                description: 'does stuff',
-            },
-            s3Morning: {
-                name: 's3Morning',
-                description: 'does other stuff',
-            },
-        },
+        rooms: {},
     }
 
     componentDidMount() {
@@ -34,11 +25,30 @@ class Main extends Component {
             }
         });
 
-        base.syncState('rooms', {
+        this.roomsRef = base.syncState('rooms', {
             context: this,
             asArray: false,
             state: 'rooms',
+            defaultValue: {
+                general: {
+                    name: 'general',
+                    description: 'Chat about stuff',
+                },
+            },
+            then: this.setRoomFromRoute,
         });
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log(this.props.match);
+        const { roomName } = this.props.match.params;
+        if (prevProps.match.params.roomName !== roomName) {
+            this.setRoomFromRoute();
+        }
+    }
+
+    componentWillUnmount() {
+        base.removeBinding(this.roomsRef);
     }
 
     addMessage = (body) => {
@@ -59,17 +69,31 @@ class Main extends Component {
         });
     }
 
-    setCurrentRoom = (currentRoom) => {
-        this.setState({ currentRoom }, () => {
-            console.log(this.state.currentRoom);
-            base.fetch(`messages/${this.state.currentRoom.name}`, {
-                context: this,
-                asArray: true,
-                then(messages) {
-                    this.setState({messages});
-                },
+    setCurrentRoom = (roomName) => {
+        const currentRoom = this.state.rooms[roomName];
+
+        if (currentRoom) {
+            this.setState({ currentRoom }, () => {
+                console.log(this.state.currentRoom);
+                base.fetch(`messages/${this.state.currentRoom.name}`, {
+                    context: this,
+                    asArray: true,
+                    then(messages) {
+                        this.setState({messages});
+                    },
+                });
             });
-        });
+        }
+        else {
+            this.loadValidRoom();
+        }
+    }
+
+    setRoomFromRoute = () => {
+        const { roomName } = this.props.match.params;
+        if (roomName) {
+            this.setCurrentRoom(roomName);
+        }
     }
 
     addRoom = (room) => {
@@ -81,10 +105,22 @@ class Main extends Component {
         });
     }
 
+    removeRoom = (room) => {
+
+    }
+
+    loadValidRoom() {
+        const roomNames = Object.keys(this.state.rooms);
+        if (roomNames.length > 0) {
+            const roomName = roomNames[0];
+            this.props.history.push(`/chat/rooms/${roomName}`);
+        }
+    }
+
     render() {
         return (
             <Switch className="Main">
-                <Route exact path="/" render={() => (
+                <Route path="/chat/rooms/:roomName" render={() => (
                     <div style={styles}>
                         <Sidebar 
                             user={this.props.user} 
@@ -101,9 +137,12 @@ class Main extends Component {
                     </div>
                 )}/>
                 <Route 
-                    exact path="/createRoom" 
+                    exact path="/chat/createRoom" 
                     render={() => <RoomForm addRoom={this.addRoom}/>}
                 />
+                <Route render={() => (
+                    <Redirect to="/chat/rooms/general" />
+                )} />
             </Switch>
         );
     }
@@ -115,4 +154,4 @@ const styles = {
     height: '100vh',
 };
 
-export default Main;
+export default withRouter(Main);
