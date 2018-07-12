@@ -13,10 +13,10 @@ class Home extends Component {
         email: '',
         password: '',
         displayName: '',
+        errorMessage: null,
     };
 
-    signUpWithEmailPassword = (e) => {
-        e.preventDefault();
+    signUpWithEmailPassword = () => {
         const { email, password, displayName } = this.state;
 
         auth.createUserWithEmailAndPassword(email, password)
@@ -25,7 +25,8 @@ class Home extends Component {
                     .then(() => {
                         this.setState({ email: '', password: '', displayName: ''});
                     });
-            });
+            })
+            .catch(error => this.handleError(error.message));
     }
 
     signInWithEmailPassword = (e) => {
@@ -52,6 +53,10 @@ class Home extends Component {
         });
     }
 
+    handleError = (errorMessage) => {
+        this.setState({ errorMessage });
+    }
+
     render() {
         return (
             <div className={`Home ${css(styles.container)}`}>
@@ -63,7 +68,8 @@ class Home extends Component {
                             handleChange={this.handleChange} 
                             signUp={this.signUpWithEmailPassword}
                             authGoogle={this.authGoogle}
-                            authGithub={this.authGithub} 
+                            authGithub={this.authGithub}
+                            handleError={this.handleError} 
                         />
                     )} />
                     <Route exact path="/signIn" render={() => (

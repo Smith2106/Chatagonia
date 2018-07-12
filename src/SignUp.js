@@ -3,11 +3,26 @@ import { StyleSheet, css } from 'aphrodite';
 
 class SignUp extends Component {
 
-    state = {
-        email: '',
-        password: '',
-        displayName: '',
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: '',
+            password: '',
+            passwordConfirmation: '',
+            displayName: '',
+        };
+    }
+
+    
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        
+        if (this.passwordsMatch()) {
+            this.props.signUp();
+        }
+    }
 
     handleChange = (e, key) => {
         this.setState({
@@ -15,11 +30,19 @@ class SignUp extends Component {
         });
     }
 
-    render() {
-        const isInvalid = this.state.email === '' || this.state.password === '';
+    passwordsMatch = () => {
+        if (this.state.password !== this.state.passwordConfirmation) {
+            this.props.handleError('The passwords you entered do not match.');
+            
+            return false;
+        }
 
+        return true;
+    }
+
+    render() {
         return (
-            <form onSubmit={this.props.signUp} className={`SignUp ${css(styles.form)}`} ref={(form) => this.loginForm = form} >
+            <form onSubmit={this.handleSubmit} className={`SignUp ${css(styles.form)}`} ref={(form) => this.loginForm = form} >
                 <input 
                     autoFocus
                     required    
@@ -33,7 +56,6 @@ class SignUp extends Component {
                         }
                     }
                     className={css(styles.input)}
-                    ref={(input) => this.emailInput = input}
                 />
                 <input
                     required    
@@ -47,7 +69,6 @@ class SignUp extends Component {
                         }
                     }
                     className={css(styles.input)}
-                    ref={(input) => this.displayNameInput = input}
                 />
                 <input 
                     required
@@ -61,12 +82,22 @@ class SignUp extends Component {
                         }
                     }
                     className={css(styles.input)}
-                    ref={(input) => this.passwordInput = input}
+                />
+                <input 
+                    required
+                    type="password"
+                    name="passwordConfirmation"
+                    placeholder="Confirm your password."
+                    value={this.state.passwordConfirmation}
+                    onChange={(e) => {
+                            this.handleChange(e, 'passwordConfirmation');
+                        }
+                    }
+                    className={css(styles.input)}
                 />
                 <button 
                     type="submit" 
                     className={css(styles.button)}
-                    disabled={isInvalid}
                 >Sign Up</button>
                 <button
                     type="button"

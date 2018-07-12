@@ -9,10 +9,12 @@ import { auth } from './base';
 class App extends Component {
   constructor(props) {
     super(props);
-    const user = JSON.parse(localStorage.getItem('user')) || {};
+    console.log(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
 
     this.state = {
-      user,
+      user: user || {},
     };
   }
 
@@ -30,7 +32,7 @@ class App extends Component {
   signOut = () => {
     auth.signOut();
     this.props.history.push('/');
-    localStorage.setItem('user', {});
+    localStorage.setItem('user', JSON.stringify({}));
   }
 
   signIn = (user) => {
