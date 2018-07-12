@@ -6,7 +6,7 @@ const Metadata = ({ message }) => {
         <div className="Metadata" style={styles.metadata}>
             <div className="user" style={styles.user}>{message.user.displayName}</div>
             <div className="time" style={styles.time}>
-                {   Date.now() - message.createdAt > (3600 * 24)
+                {   Date.now() - message.createdAt > (3600 * 24 * 1000)
                     ? moment(message.createdAt).format('D MMM @ h:m A')
                     : moment(message.createdAt).fromNow()
                 }
