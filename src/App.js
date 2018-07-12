@@ -4,7 +4,7 @@ import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import Main from './Main';
 import Home from './Home';
-import { auth } from './base';
+import { auth, base } from './base';
 
 class App extends Component {
   constructor(props) {
@@ -45,10 +45,15 @@ class App extends Component {
         photoURL: user.photoURL,
       }
     }, () => {
-      console.log(this.state.user);
-      this.props.history.push(`/chat`);
-      localStorage.setItem('user', JSON.stringify(this.state.user));
+        this.props.history.push(`/chat`);
+        localStorage.setItem('user', JSON.stringify(this.state.user));
     });
+  }
+
+  updateDisplayName = () => {
+    const user = {...this.state.user};
+    user.displayName = auth.currentUser.displayName;
+    this.setState({ user });
   }
 
   render() {
@@ -65,7 +70,7 @@ class App extends Component {
                 ? <Main user={this.state.user} signOut={this.signOut} />
                 : <Redirect to='/' />
             )} />
-            <Route path='/' component={Home} />  
+            <Route path='/' render={() => <Home updateDisplayName={this.updateDisplayName} />} />  
          </Switch>
       </div>
     );

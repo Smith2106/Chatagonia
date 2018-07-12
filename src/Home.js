@@ -23,6 +23,7 @@ class Home extends Component {
             .then(authUser => {
                 authUser.user.updateProfile({displayName})
                     .then(() => {
+                        this.props.updateDisplayName();
                         this.setState({ email: '', password: '', displayName: ''});
                     });
             })
