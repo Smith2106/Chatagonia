@@ -24,7 +24,7 @@ class App extends Component {
         this.signIn(user);
       }
       else {
-        this.setState({user: null});
+        this.setState({user: {} });
       }
     });
   }
@@ -36,6 +36,7 @@ class App extends Component {
   }
 
   signIn = (user) => {
+    console.log(user);
     this.setState({
       user: {
         uid: user.uid,
@@ -44,6 +45,7 @@ class App extends Component {
         photoURL: user.photoURL,
       }
     }, () => {
+      console.log(this.state.user);
       this.props.history.push(`/chat`);
       localStorage.setItem('user', JSON.stringify(this.state.user));
     });

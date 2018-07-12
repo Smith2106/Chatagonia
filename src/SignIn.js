@@ -8,6 +8,11 @@ class SignIn extends Component {
         password: '',
     };
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.signIn();
+    }
+
     handleChange = (e, key) => {
         this.setState({
             [key]: e.target.value,
@@ -18,7 +23,7 @@ class SignIn extends Component {
         const isInvalid = this.state.email === '' || this.state.password === '';
 
         return (
-            <form onSubmit={this.props.SignIn} className={`SignIn ${css(styles.form)}`} ref={(form) => this.loginForm = form} >
+            <form onSubmit={this.handleSubmit} className={`SignIn ${css(styles.form)}`} ref={(form) => this.loginForm = form} >
                 <input 
                     autoFocus
                     required    

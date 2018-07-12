@@ -29,8 +29,7 @@ class Home extends Component {
             .catch(error => this.handleError(error.message));
     }
 
-    signInWithEmailPassword = (e) => {
-        e.preventDefault();
+    signInWithEmailPassword = () => {
         const { email, password } = this.state;
 
         auth.signInWithEmailAndPassword(email, password)
